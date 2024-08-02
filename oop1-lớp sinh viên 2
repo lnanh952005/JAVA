@@ -1,0 +1,84 @@
+
+class sinhVien {
+    private String id,name,lop,birth;
+    double gpa;
+
+    public sinhVien() {
+        this.id = "";
+        this.name = "";
+        this.birth = "";
+        this.lop = "";
+        this.gpa = 0;
+    }
+
+    public sinhVien(String id, String name, String lop, String birth, double gpa) {
+        this.id = id;
+        this.name = name;
+        this.lop = lop;
+        this.birth = birth;
+        this.gpa = gpa;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLop() {
+        return lop;
+    }
+
+    public void setLop(String lop) {
+        this.lop = lop;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public double getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+    public void chuanhoa(){
+        StringBuilder sb = new StringBuilder(this.birth);
+        if(sb.charAt(1) == '/'){
+            sb.insert(0, '0');
+        }
+        if(sb.charAt(4) == '/'){
+            sb.insert(3, '0');
+        }
+        this.birth = sb.toString();
+    }
+    public String toString() {
+        return this.id + " " + this.name + " " + this.lop + " " + this.birth + " " + String.format("%.1f",this.gpa);
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        sinhVien x = new sinhVien("SV001",sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextDouble());
+        x.chuanhoa();
+        System.out.println(x);
+    }
+}
