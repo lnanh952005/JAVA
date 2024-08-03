@@ -1,1 +1,80 @@
 
+class rectange {
+    private double hight;
+    private double width;
+    private String color;
+
+    public rectange() {
+    }
+    public rectange(double hight, double width, String color) {
+        this.hight = hight;
+        this.width = width;
+        this.color = color;
+    }
+    public double getHight() {
+        return hight;
+    }
+    public void setHight(double hight) {
+        this.hight = hight;
+    }
+    public double getWidth() {
+        return width;
+    }
+    public void setWidth(double width) {
+        this.width = width;
+    }
+    public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public double findArea(){
+        return this.hight * this.width;
+    }
+    public double findPerimeter(){
+        return (this.hight + this.width) * 2;
+    }
+    public String chuanhoa(String tmp){
+        String x ="";
+        x += Character.toUpperCase(tmp.charAt(0));
+        for(int i=1;i<tmp.length();i++){
+            x += Character.toLowerCase(tmp.charAt(i));
+        }
+        return x;
+    }
+    public void infor(){
+        if(this.findPerimeter() == (int)this.findPerimeter()){
+            System.out.print((int)this.findPerimeter() + " ");
+        }
+        else{
+            System.out.print(this.findPerimeter() + " ");
+        }
+        if(this.findArea() == (int)this.findArea()){
+            System.out.print((int)this.findArea() + " ");
+        }
+        else{
+            System.out.print(this.findArea() + " ");
+        }
+        System.out.println(this.color);
+    }
+    
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double hight = sc.nextDouble();
+        double width = sc.nextDouble();
+        String color = sc.next();
+        if(hight < 0 || width < 0){
+            System.out.println("INVALID");
+        }
+        else{
+            rectange x = new rectange(hight,width,color);
+            x.setColor(x.chuanhoa(x.getColor()));
+            x.infor();
+        }
+    }
+}
