@@ -1,1 +1,39 @@
 
+class phanso {
+    private int tu,mau;
+    public phanso(int tu,int mau){
+        this.tu = tu;
+        this.mau = mau;
+    }
+    public int getTu(){
+        return this.tu;
+    }
+    public void setTu(int newtu){
+        this.tu = newtu;
+    }
+    public int getMau(){
+        return this.mau;
+    }
+    public void setMau(int newmau){
+        this.mau = newmau;
+    }
+    public String toString(){
+        return this.tu + "/" + this.mau;
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static int gcd(int a,int b){
+        if(b == 0) return a;
+        return gcd(b,a%b);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        phanso x = new phanso(sc.nextInt(),sc.nextInt());
+        int uc = gcd(x.getTu(),x.getMau());
+        x.setTu(x.getTu()/uc);
+        x.setMau(x.getMau()/uc);
+        System.out.println(x);
+    }
+}
