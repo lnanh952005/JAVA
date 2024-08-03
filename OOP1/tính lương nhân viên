@@ -1,0 +1,69 @@
+
+public class nhanvien {
+    private String id,name,chucvu;
+    private long salary,ngaycong;
+
+    public nhanvien(String id, String name,long salary, long ngaycong,String chucvu) {
+        this.id = id;
+        this.name = name;
+        this.chucvu = chucvu;
+        this.salary = salary;
+        this.ngaycong = ngaycong;
+    }
+    public long getLuong(){
+        return this.salary*this.ngaycong;
+    }
+    public double getThuong(){
+        if(this.ngaycong >= 25){
+            return 0.2 * this.getLuong();
+        }
+        else if(this.ngaycong >= 22){
+            return this.getLuong() * 0.1;
+        }
+        else{
+            return 0;
+        }
+    }
+    public long getPhuCap(){
+        if(this.chucvu.equals("GD")){
+            return 250000;
+        }
+        else if(this.chucvu.equals("PGD")){
+            return 200000;
+        }
+        else if(this.chucvu.equals("TP")){
+            return 180000;
+        }
+        else{
+            return 150000;
+        }
+    }
+    public void infor(){
+        System.out.print(this.id + " ");
+        System.out.print(this.name + " ");
+        System.out.print(this.getLuong() + " ");
+        if(this.getThuong() == (long)this.getThuong()){
+            System.out.print((long)this.getThuong() + " ");
+        }
+        else{
+            System.out.print(this.getThuong() + " ");
+        }
+        System.out.print(this.getPhuCap() +" ");
+        double result = this.getLuong() + this.getThuong() + this.getPhuCap();
+        if(result == (long)result){
+            System.out.print((long)result);
+        }
+        else{
+            System.out.print(result);
+        }
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        nhanvien x = new nhanvien("NV01",sc.nextLine(),sc.nextLong(),sc.nextLong(),sc.next());
+        x.infor();
+    }
+}
