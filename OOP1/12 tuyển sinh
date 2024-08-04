@@ -1,0 +1,95 @@
+
+class sinhvien {
+    private String ma ,name;
+    private double d1,d2,d3;
+
+    public sinhvien(String ma, String name, double d1, double d2, double d3) {
+        this.ma = ma;
+        this.name = name;
+        this.d1 = d1;
+        this.d2 = d2;
+        this.d3 = d3;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getD1() {
+        return d1;
+    }
+
+    public void setD1(double d1) {
+        this.d1 = d1;
+    }
+
+    public double getD2() {
+        return d2;
+    }
+
+    public void setD2(double d2) {
+        this.d2 = d2;
+    }
+
+    public double getD3() {
+        return d3;
+    }
+
+    public void setD3(double d3) {
+        this.d3 = d3;
+    }
+    public double tongdiem(){
+        if(this.ma.charAt(2) == '1'){
+            return this.d1 + this.d2 + this.d3 + 0.5;
+        } 
+        else if(this.ma.charAt(2) == '2'){
+            return this.d1 + this.d2 + this.d3 + 1.0;
+        }
+        else{
+            return this.d1 + this. d2 + this.d3 + 2.5;
+        }
+    }
+    
+    public void infor(){
+        System.out.print(this.ma + " ");
+        System.out.print(this.name + " ");
+        System.out.print(this.ma.charAt(2) + " ");
+        if(this.tongdiem() == (int)this.tongdiem()){
+            if((int)this.tongdiem() >= 24){
+                System.out.println((int)this.tongdiem() + " " + "TRUNG TUYEN");
+            }
+            else{
+                System.out.println((int)this.tongdiem() + " " + "TRUOT");
+            }
+        }
+        else{
+            if(this.tongdiem() >= 24){
+                System.out.printf("%.1f TRUNG TUYEN",this.tongdiem());
+            }
+            else{
+                System.out.printf("%.1f TRUOT",this.tongdiem());
+            }
+        }
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        sinhvien x = new sinhvien(sc.nextLine(),sc.nextLine(),sc.nextDouble(),sc.nextDouble(),sc.nextDouble());
+        x.infor();
+    }
+}
