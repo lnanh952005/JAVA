@@ -1,0 +1,85 @@
+
+class account {
+    private String id;
+    private String customerid;
+    private String sotk;
+    private String pin;
+    private long sodu;
+
+    public account(String id, String customerid, String sotk, String pin, long sodu) {
+        this.id = id;
+        this.customerid = customerid;
+        this.sotk = sotk;
+        this.pin = pin;
+        this.sodu = sodu;
+    }
+    public long getSodu(){
+        return this.sodu;
+    }
+
+    public void setSodu(long sodu) {
+        this.sodu = sodu;
+    }
+    
+    public static int findpos(ArrayList<account> arr,int n,String sotk){
+        for(int i=0;i<n;i++){
+            if(arr.get(i).sotk.equals(sotk)){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public String toString(){
+        return "ID : " + this.id +"\n" +
+               "CusID : " + this.customerid +"\n"+
+               "Number : " + this.sotk +"\n"+
+               "PIN : " + this.pin +"\n" +
+               "Balance : " + this.sodu +"VND\n"+
+               "-------------------\n";
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<account> arr = new ArrayList<>();
+        int n = sc.nextInt();
+        for(int i=1;i<=n;i++){
+            sc.nextLine();
+            arr.add(new account(sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLong()));
+        }
+        int t = sc.nextInt();
+        for(int i=1;i<=t;i++){
+            String gd = sc.next();
+            if(gd.equals("transfer")){
+                String x = sc.next();
+                String y = sc.next();
+                long money = sc.nextLong();
+                int posx = account.findpos(arr,n, x);
+                int posy = account.findpos(arr, n, y);
+                if(arr.get(posx).getSodu() - 50000 >= money){
+                    arr.get(posx).setSodu(arr.get(posx).getSodu()-money);
+                    arr.get(posy).setSodu(arr.get(posy).getSodu()+money);
+                }
+            }
+            else if(gd.equals("withdraw")){
+                String x = sc.next();
+                long money = sc.nextLong();
+                int posx = account.findpos(arr, n, x);
+                if(arr.get(posx).getSodu() - 50000 >= money){
+                    arr.get(posx).setSodu(arr.get(posx).getSodu() - money);
+                }
+            }
+            else{
+                String x = sc.next();
+                long money = sc.nextLong();
+                int posx = account.findpos(arr, n, x);
+                arr.get(posx).setSodu(arr.get(posx).getSodu()+money);
+            }
+        }
+        for(account x : arr){
+            System.out.println(x);
+        }
+    }
+}
