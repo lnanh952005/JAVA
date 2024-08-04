@@ -1,0 +1,73 @@
+class account {
+    private String id, customerid,username,password;
+    public account(String id, String customerid, String username, String password) {
+        this.id = id;
+        this.customerid = customerid;
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public boolean checkLogin(String username,String password){
+        return (this.username.equals(username) && this.password.equals(password));
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<account> arr = new ArrayList<>();
+        int n = sc.nextInt(); sc.nextLine();
+        for (int i = 1; i <= n; i++) {
+            arr.add(new account(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+        }
+        int q = sc.nextInt(); sc.nextLine();
+        for (int i = 1; i <= q; i++) {
+            String username = sc.nextLine();
+            String password = sc.nextLine();
+            boolean check = false;
+            for (account x : arr) {
+                if (x.checkLogin(username, password)) {
+                    check = true;
+                    break;
+                }
+            }
+            if (check) {
+                System.out.println("Login Successful");
+            } else {
+                System.out.println("Login Failed");
+            }
+        }
+    }
+}
