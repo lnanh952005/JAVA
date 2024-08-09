@@ -1,0 +1,195 @@
+
+abstract class Shape {
+    protected String color;
+    protected boolean filled;
+    
+    Shape(){
+    }
+    
+    Shape(String color,boolean filled){
+        this.color = color;
+        this.filled = true;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
+    }
+    public abstract double getArea();
+    public abstract double getPerimeter();
+    public String toString(){
+        return this.color + " " + this.filled;
+    }
+}
+
+
+class Circle extends Shape{
+    protected double radius;
+
+    public Circle() {
+    }
+    
+    public Circle(double radius, String color, boolean filled) {
+        super(color, filled);
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+   
+
+    @Override
+    public String toString() { 
+        return "-----------------------\n" +
+               "Radius : " + String.format("%.2f",this.radius) +"\n"+
+               "Color : " + this.color + "\n" +
+               "Filled : " + this.filled +"\n" +
+               "Perimeter : " + String.format("%.2f",this.getPerimeter()) + "\n"+
+               "Area : " + String.format("%.2f",this.getArea()) + "\n" +
+               "-----------------------\n";
+    }
+
+    @Override
+    public double getArea() {
+        return this.radius*this.radius*3.14;
+    }
+    @Override
+    public double getPerimeter() {
+        return 2 * 3.14 * this.radius;
+    }
+}
+
+class Rectangle extends Shape{
+    protected double width,length;
+    
+    public Rectangle(){
+    }
+    
+    public Rectangle(double width, double length, String color, boolean filled) {
+        super(color, filled);
+        this.width = Math.min(length,width);
+        this.length = Math.max(length, width);
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+    
+    @Override
+    public double getArea() {
+        return this.length * this.width;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return (this.width + this.length) * 2;
+    }
+    public String toString() { 
+        return 
+               "-----------------------\n" +
+               "Width : " + String.format("%.2f",this.width) +"\n"+
+               "Length : " + String.format("%.2f",this.length) +"\n"+
+               "Color : " + this.color + "\n" +
+               "Filled : " + this.filled +"\n" +
+               "Perimeter : " + String.format("%.2f",this.getPerimeter()) + "\n"+
+               "Area : " + String.format("%.2f",this.getArea()) + "\n" +
+               "-----------------------\n";
+    }
+}
+
+
+class Square extends Rectangle{
+
+    public Square() {
+    }
+    
+    public Square(double width, double length, String color, boolean filled) {
+        super(width, length, color, filled);
+    }
+    
+    @Override
+    public double getArea() {
+        return this.length * this.width;
+    }
+    @Override
+    public double getPerimeter() {
+        return (this.width + this.length) * 2;
+    }
+    public String toString(){
+        return "-----------------------\n" + 
+               "Side : " + String.format("%.2f",this.width) + "\n" +
+               "Color : " + this.color +"\n"+
+               "Filled : " + this.filled +"\n"+
+               "Perimeter : " + String.format("%.2f",this.getPerimeter()) +"\n"+
+               "Area : " + String.format("%.2f",this.getArea()) +"\n"+
+               "-----------------------\n";
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Shape> arr = new ArrayList<>();
+        int n = sc.nextInt();
+        for(int i=1;i<=n;i++){
+            String s = sc.next();
+            if(s.equals("C")){
+                arr.add(new Circle(sc.nextDouble(),sc.next(),sc.nextBoolean()));
+            }
+            else if(s.equals("R")){
+                arr.add(new Rectangle(sc.nextDouble(),sc.nextDouble(),sc.next(),sc.nextBoolean()));
+            }
+            else{
+                double side = sc.nextDouble();
+                arr.add(new Square(side,side,sc.next(),sc.nextBoolean()));
+            }
+        }
+        System.out.println("Circle :");
+        for(int i=0;i<n;i++){
+            if(arr.get(i) instanceof Circle){
+                System.out.println(arr.get(i));
+            }
+        }
+        System.out.println("Rectangle :");
+        for(int i=0;i<n;i++){
+            if(arr.get(i) instanceof Rectangle && !(arr.get(i) instanceof Square)){
+                System.out.println(arr.get(i));
+            }
+        }
+        System.out.println("Square :");
+        for(int i=0;i<n;i++){
+            if(arr.get(i) instanceof Square){
+                System.out.println(arr.get(i));
+            }
+        }
+    }
+}
