@@ -1,0 +1,127 @@
+
+class game {
+    public int power, blood;
+    public boolean alive;
+
+    public game(int power, int blood, boolean alive) {
+        this.power = power;
+        this.blood = blood;
+        this.alive = alive;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getBlood() {
+        return blood;
+    }
+
+    public void setBlood(int blood) {
+        this.blood = blood;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public void mushroom() {
+        if (this.alive) {
+            this.power -= 2;
+            this.blood -= 15;
+            if (this.power <= 0 || this.blood <= 0) {
+                this.power = 0;
+                this.blood = 0;
+                this.alive = false;
+            }
+        }
+    }
+
+    public void pea() {
+        if (this.alive) {
+            this.blood += 10;
+            this.power += 2;
+        }
+    }
+
+    public void witch(int power) {
+        if (this.alive) {
+            if (power >= this.power) {
+                this.power = 0;
+                this.blood = 0;
+                this.alive = false;
+            } 
+            else {
+                this.power += 5;
+            }
+        }
+    }
+
+    public void soldier(int power) {
+        if (this.alive) {
+            if (power >= this.power) {
+                this.power = 0;
+                this.blood = 0;
+                this.alive = false;
+            } else {
+                this.power += 7;
+                this.blood += 5;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        String res;
+        if (this.alive) {
+            res = "ALIVE";
+        } else {
+            res = "DEAD";
+        }
+        return "POWER : " + this.power + "\n"
+                + "BLOOD : " + this.blood + "\n"
+                + res + "\n--------------------\n";
+    }
+}
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int power = Integer.parseInt(sc.nextLine().substring(8,11));
+        int blood = Integer.parseInt(sc.nextLine().substring(8,11));
+        String tmp = sc.nextLine();
+        boolean alive;
+        if(tmp.equals("ALIVE")){
+            alive = true;
+        }
+        else alive = false;
+        game x = new game(power,blood,alive);
+        int n = sc.nextInt(); sc.nextLine();
+        for(int i=0;i<n;i++){
+            String s = sc.nextLine();
+            if(s.equals("mushroom")){
+                x.mushroom();
+                System.out.println(x);
+            }
+            else if(s.equals("pea")){
+                x.pea();
+                System.out.println(x);
+            }
+            else if(s.charAt(0) == 'w'){
+                int p = Integer.parseInt(s.substring(6));
+                x.witch(p);
+                System.out.println(x);
+            }
+            else{
+                int p = Integer.parseInt(s.substring(8));
+                x.soldier(p);
+                System.out.println(x);
+            }
+        }
+    }
+}
