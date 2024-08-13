@@ -1,0 +1,25 @@
+
+import java.util.*;
+public class exxxam {
+    public static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        int n = sc.nextInt(), m = sc.nextInt();
+        int a[] = new int[n];
+        int b[] = new int[m];
+        for(int i=0;i<n;i++) a[i] = sc.nextInt();
+        for(int i=0;i<m;i++) b[i] = sc.nextInt();
+        TreeSet<Integer> ts1 = new TreeSet<>();
+        TreeSet<Integer> ts2 = new TreeSet<>();
+        for(int i=0;i<n;i++){
+            ts1.add(a[i]);
+        }
+        for(int i=0;i<m;i++){
+            ts2.add(b[i]);
+        }
+        for(int x : ts1){
+            if(ts2.contains(x)){
+                System.out.print(x + " ");
+            }
+        }
+    }
+}
