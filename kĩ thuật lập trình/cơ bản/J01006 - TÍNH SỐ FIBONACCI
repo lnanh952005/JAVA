@@ -1,0 +1,18 @@
+package example;
+import java.util.*;
+
+public class test {
+    public static Scanner n = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        int t = n.nextInt();
+        long[] f = new long[93];
+        f[1] = 1; f[2] = 1;
+        for(int i = 3; i <= 92; i++){
+            f[i] = f[i - 1] + f[i - 2];
+        }
+        while(t-- != 0){
+            int a = n.nextInt();
+            System.out.println(f[a]);
+        }
+    }
+}
