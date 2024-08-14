@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class App {
+    public static Scanner n = new Scanner(System.in);
+
+    public static void main(String[] args) throws Exception {
+        int t = n.nextInt();
+        while(t-- != 0){
+            long a = n.nextInt();
+            long s = a * (a + 1) / 2;
+            System.out.println(s);
+        }
+    }
+}
