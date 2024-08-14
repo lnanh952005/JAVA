@@ -1,0 +1,28 @@
+package example;
+import java.util.*;
+
+public class exxxam {
+    public static Scanner sc = new Scanner(System.in);
+    public static String chuanhoa(String s){
+        String tmp = "";
+        tmp += Character.toUpperCase(s.charAt(0));
+        for(int i=1;i<s.length();i++){
+            tmp += Character.toLowerCase(s.charAt(i));
+        }
+        return tmp;
+    }
+    public static void main(String[] args) {
+        int t = sc.nextInt();
+        sc.nextLine();
+        while(t-- != 0){
+            String s = sc.nextLine();
+            StringTokenizer st = new StringTokenizer(s);
+            String tmp = "";
+            while(st.hasMoreTokens()){
+                tmp += chuanhoa(st.nextToken());
+                tmp += " ";
+            }
+            System.out.println(tmp.trim());
+        }
+    }
+}
