@@ -1,0 +1,20 @@
+package example;
+import java.util.*;
+
+public class test {
+    public static Scanner n = new Scanner(System.in);
+    
+    public static void main(String[] args) throws Exception {
+        int t = n.nextInt();
+        while (t-- != 0) {
+            long a = n.nextLong();
+            int cnt = 0;
+            for(int i =2;i<= (int)Math.sqrt(a);i++){
+                while(a%i == 0){
+                    a/=i;
+                }
+            }
+            System.out.println(a);
+        }
+    }
+}
