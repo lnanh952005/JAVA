@@ -1,0 +1,43 @@
+import java.util.*;
+class phanso {
+    private long tu,mau;
+    public phanso(long tu,long mau){
+        this.tu = tu;
+        this.mau = mau;
+    }
+    public long getTu(){
+        return this.tu;
+    }
+    public void setTu(long newtu){
+        this.tu = newtu;
+    }
+    public long getMau(){
+        return this.mau;
+    }
+    public void setMau(long newmau){
+        this.mau = newmau;
+    }
+    public String toString(){
+        return this.tu + "/" + this.mau;
+    }
+}
+
+public class Main {
+    public static long gcd(long a,long b){
+        if(b == 0) return a;
+        return gcd(b,a%b);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong(), b = sc.nextLong(), c=sc.nextLong(),d = sc.nextLong();
+        long uc1 = gcd(a,b), uc2 = gcd(c,d);
+        a /= uc1; b /= uc1; c /= uc2 ; d /= uc2;
+        long mau = (b*d);
+        long tu = mau/b*a + mau/d*c;
+        phanso x = new phanso(tu,mau);
+        long uc = gcd(x.getTu(),x.getMau());
+        x.setTu(x.getTu()/uc);
+        x.setMau(x.getMau()/uc);
+        System.out.println(x);
+    }
+}
