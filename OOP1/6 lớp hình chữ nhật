@@ -1,3 +1,4 @@
+import java.util.*;
 
 class rectange {
     private double hight;
@@ -5,6 +6,7 @@ class rectange {
     private String color;
 
     public rectange() {
+        this.width = this.hight = 1;
     }
     public rectange(double hight, double width, String color) {
         this.hight = hight;
@@ -44,24 +46,25 @@ class rectange {
         return x;
     }
     public void infor(){
-        if(this.findPerimeter() == (int)this.findPerimeter()){
-            System.out.print((int)this.findPerimeter() + " ");
+        if(this.hight <=0 || this.width <=0) System.out.println("INVALID");
+        else {
+            if (this.findPerimeter() == (int) this.findPerimeter()) {
+                System.out.print((int) this.findPerimeter() + " ");
+            } 
+            else {
+                System.out.print(this.findPerimeter() + " ");
+            }
+            if (this.findArea() == (int) this.findArea()) {
+                System.out.print((int) this.findArea() + " ");
+            } 
+            else {
+                System.out.print(this.findArea() + " ");
+            }
+            System.out.println(this.color);
         }
-        else{
-            System.out.print(this.findPerimeter() + " ");
-        }
-        if(this.findArea() == (int)this.findArea()){
-            System.out.print((int)this.findArea() + " ");
-        }
-        else{
-            System.out.print(this.findArea() + " ");
-        }
-        System.out.println(this.color);
     }
-    
 }
 
-import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
