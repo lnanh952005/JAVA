@@ -1,0 +1,25 @@
+package example;
+import java.util.*;
+
+public class exxxam {
+    public static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        int t = Integer.parseInt(sc.next());
+        while(t-- != 0) {
+            String s = sc.next();
+            boolean ok = true;
+            StringBuilder sb = new StringBuilder(s);
+            String tmp = sb.reverse().toString();
+            if(s.equals(tmp)){
+                for(int i=0;i<s.length();i++){
+                    if(!(s.charAt(i) == '2' || s.charAt(i) == '3'|| s.charAt(i) == '5' || s.charAt(i) == '7')){
+                        ok = false; break;
+                    }
+                }
+                if(ok) System.out.println("YES");
+                else System.out.println("NO");
+            }
+            else System.out.println("NO");
+        }
+    }
+}
