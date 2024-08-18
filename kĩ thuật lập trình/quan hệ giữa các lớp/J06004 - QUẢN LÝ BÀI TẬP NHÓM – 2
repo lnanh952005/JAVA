@@ -1,0 +1,47 @@
+package OOP;
+import java.util.*;
+class group{
+    protected String id,name,number;
+    protected int stt;
+    
+    public group(String id, String name, String number, int stt) {
+        this.id = id;
+        this.name = name;
+        this.number = number;
+        this.stt = stt;
+    }
+
+    public int getStt() {
+        return stt;
+    }
+    
+    public String toString(){
+        return this.id + " " + this.name + " " + this.number + " " + this.stt;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), m =sc.nextInt();
+        Vector<group> v = new Vector<>();
+        for(int i=0;i<n;i++){
+            sc.nextLine();
+            v.add(new group(sc.nextLine(),sc.nextLine(),sc.next(),sc.nextInt()));
+        }
+        sc.nextLine();
+        String bt[] = new String[m+1];
+        for(int i=1;i<=m;i++){
+            bt[i] = sc.nextLine();
+        }
+        Collections.sort(v,new Comparator<group>(){
+            @Override
+            public int compare(group o1, group o2) {
+                return o1.id.compareTo(o2.id);
+            }
+        });
+        for(int i=0;i<n;i++){
+            System.out.print(v.get(i));
+            System.out.println(" " + bt[v.get(i).getStt()]);
+        }
+    }
+}
