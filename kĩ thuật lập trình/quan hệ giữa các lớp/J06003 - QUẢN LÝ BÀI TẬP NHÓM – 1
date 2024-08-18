@@ -1,0 +1,43 @@
+package OOP;
+import java.util.*;
+class group{
+    private String id,name,number;
+    protected int stt;
+    public group(String id, String name, String number, int stt) {
+        this.id = id;
+        this.name = name;
+        this.number = number;
+        this.stt = stt;
+    }
+    
+    public String toString(){
+        return this.id + " " + this.name + " " + this.number;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), m =sc.nextInt();
+        Vector<group> v = new Vector<>();
+        for(int i=0;i<n;i++){
+            sc.nextLine();
+            v.add(new group(sc.nextLine(),sc.nextLine(),sc.next(),sc.nextInt()));
+        }
+        sc.nextLine();
+        String bt[] = new String[m+1];
+        for(int i=1;i<=m;i++){
+            bt[i] = sc.nextLine();
+        }
+        int q = sc.nextInt();
+        while(q-- != 0){
+            int tv = sc.nextInt();
+            System.out.printf("DANH SACH NHOM %d:\n",tv);
+            for(int i =0;i<n;i++){
+                if(v.get(i).stt == tv){
+                    System.out.println(v.get(i));
+                }
+            }
+            System.out.println("Bai tap dang ky: " + bt[tv]);
+        }
+    }
+}
