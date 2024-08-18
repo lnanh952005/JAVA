@@ -1,0 +1,49 @@
+package OOP;
+import java.util.*;
+
+class mathang{
+    protected String id,name,donvi;
+    protected int giamua,giaban;
+
+    public mathang(String id, String name, String donvi, int giamua, int giaban) {
+        this.id = id;
+        this.name = name;
+        this.donvi = donvi;
+        this.giamua = giamua;
+        this.giaban = giaban;
+    }
+    public int loinhuan(){
+        return this.giaban-this.giamua;
+    }
+    @Override
+    public String toString() {
+        return this.id + " " + this.name + " " + this.donvi + " " + this.giamua + " " + this.giaban +" "+ this.loinhuan();
+    }
+    
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        mathang a[] = new mathang[n];
+        int cnt = 1;
+        for(int i=0;i<n;i++){
+            sc.nextLine();
+            String id = "MH" + String.format("%03d",cnt++);
+            a[i] = new mathang(id,sc.nextLine(),sc.nextLine(),sc.nextInt(),sc.nextInt());
+        }
+        Arrays.sort(a,new Comparator<mathang>(){
+            @Override
+            public int compare(mathang o1, mathang o2) {
+                if(o1.loinhuan() != o2.loinhuan()){
+                    return o2.loinhuan() - o1.loinhuan();
+                }
+                return o1.id.compareTo(o2.id);
+            }
+        });
+        for(int i=0;i<n;i++){
+            System.out.println(a[i]);
+        }
+    }
+}
