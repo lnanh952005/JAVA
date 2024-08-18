@@ -1,0 +1,49 @@
+package OOP;
+import java.util.*;
+
+class hours {
+    protected int gio,phut,giay;
+
+    public hours(int gio, int phut, int giay) {
+        this.gio = gio;
+        this.phut = phut;
+        this.giay = giay;
+    }
+   
+    public String toString(){
+        return this.gio + " " + this.phut + " " + this.giay;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        hours a[] = new hours[n];
+        for(int i=0;i<n;i++){
+            a[i] = new hours(sc.nextInt(),sc.nextInt(),sc.nextInt());
+        }
+        Arrays.sort(a,new Comparator<hours>(){
+            @Override
+            public int compare(hours o1, hours o2) {
+                if(o1.gio == o2.gio){
+                    if(o1.phut == o2.phut){
+                        if(o1.giay < o2.giay){
+                            return -1;
+                        }
+                        else return 1;
+                    }
+                    else{
+                        return o1.phut - o2.phut;
+                    }
+                }
+                else{
+                    return o1.gio - o2.gio;
+                }
+            }
+        });
+        for(int i=0;i<n;i++){
+            System.out.println(a[i]);
+        }
+    }
+}
