@@ -1,0 +1,100 @@
+package example;
+import java.util.*;
+class khachhang {
+    protected String maKH,tenKH,gioitinh,ngaysinh,diachi;
+
+    public khachhang(String maKH, String tenKH, String gioitinh, String ngaysinh, String diachi) {
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+        this.gioitinh = gioitinh;
+        this.ngaysinh = ngaysinh;
+        this.diachi = diachi;
+    }
+
+    public khachhang() {
+    }
+    
+}
+
+class mathang {
+    protected String maMH,tenMH,donvitinh;
+    protected int giamua,giaban;
+
+    public mathang(String maMH, String tenMH, String donvitinh, int giamua, int giaban) {
+        this.maMH = maMH;
+        this.tenMH = tenMH;
+        this.donvitinh = donvitinh;
+        this.giamua = giamua;
+        this.giaban = giaban;
+    }
+
+    public mathang() {
+    }
+}
+
+class hoadon {
+    protected String maHD;
+    protected khachhang cus;
+    protected mathang pro;
+    protected int sl;
+
+    public hoadon(String maHD, khachhang cus, mathang pro, int sl) {
+        this.maHD = maHD;
+        this.cus = cus;
+        this.pro = pro;
+        this.sl = sl;
+    }
+    
+    public hoadon() {
+        
+    }
+    
+    public String toString(){
+        return this.maHD +" "+ this.cus.tenKH +" "+ this.cus.diachi +" "+ this.pro.tenMH+" "+
+        this.pro.donvitinh +" "+ this.pro.giamua +" "+ this.pro.giaban+ " " + this.sl +" "+ this.pro.giaban*sl;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        Vector<khachhang> kh = new Vector<>();
+        Vector<mathang> mh = new Vector<>();
+        Vector<hoadon> hd = new Vector<>();
+        for(int i=1;i<=n;i++){
+            String maKH = "KH" + String.format("%03d",i);
+            kh.add(new khachhang(maKH,sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine()));
+        }
+        int m = Integer.parseInt(sc.nextLine());
+        for(int i=1;i<=m;i++){
+            String maMH = "MH" + String.format("%03d", i);
+            mh.add(new mathang(maMH,sc.nextLine(),sc.nextLine(),sc.nextInt(),sc.nextInt()));
+            sc.nextLine();
+        }
+        int k = Integer.parseInt(sc.nextLine());
+        for(int i=1;i<=k;i++){
+            String s = sc.nextLine();
+            String maHD = "HD" + String.format("%03d",i);
+            int sl = Integer.parseInt(s.substring(12));
+            khachhang a = new khachhang();
+            mathang b = new mathang();
+            for(khachhang x :kh){
+                if(s.substring(0,5).equals(x.maKH)){
+                    a = x;
+                    break;
+                }
+            }
+            for(mathang x : mh){
+                if(s.substring(6,11).equals(x.maMH)){
+                    b = x;
+                    break;
+                }
+            }
+            hd.add(new hoadon(maHD,a,b,sl));
+        }
+        for(hoadon x : hd){
+            System.out.println(x);
+        }
+    }
+}
