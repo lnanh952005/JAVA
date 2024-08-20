@@ -1,0 +1,42 @@
+package example;
+import java.util.*;
+class mathang{
+    protected String ma,ten,nhom;
+    protected double giamua,giaban;
+
+    public mathang(String ma, String ten, String nhom, double giamua, double giaban) {
+        this.ma = ma;
+        this.ten = ten;
+        this.nhom = nhom;
+        this.giamua = giamua;
+        this.giaban = giaban;
+    }
+    
+    public double loinhuan(){
+        return this.giaban - this.giamua;
+    }
+    public String toString(){
+        return this.ma +" "+ this.ten +" "+ this.nhom +" "+ String.format("%.2f", this.loinhuan());
+    }
+}
+public class exxxam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); sc.nextLine();
+        ArrayList<mathang> arr = new ArrayList<>();
+        for(int i=1;i<=n;i++){
+            arr.add(new mathang(i+"",sc.nextLine(),sc.nextLine(),sc.nextDouble(),sc.nextDouble()));
+            sc.nextLine();
+        }
+        Collections.sort(arr, new Comparator<mathang>(){
+            @Override
+            public int compare(mathang o1, mathang o2) {
+                if(o1.loinhuan() > o2.loinhuan()) return -1;
+                return 1;
+            }
+        });
+        for(mathang x: arr){
+            System.out.println(x);
+        }
+    }
+}
