@@ -1,0 +1,41 @@
+package example;
+
+import java.util.*;
+
+class giangvien{
+    protected String ma,ten,bomon;
+
+    public giangvien(String ma,String ten, String bomon) {
+        this.ma = ma;
+        this.ten = ten;
+        String a[] = bomon.split("\\s+");
+        this.bomon = "";
+        for(int i=0;i<a.length;i++) this.bomon += Character.toUpperCase(a[i].charAt(0));
+    }
+
+    @Override
+    public String toString() {
+        return this.ma +" "+ this.ten + " "+ this.bomon;
+    }
+}
+public class NewClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<giangvien> arr = new ArrayList<>();
+        for(int i=1;i<=n;i++){
+            arr.add(new giangvien("GV"+String.format("%02d",i),sc.nextLine(),sc.nextLine()));
+        }
+        Collections.sort(arr,new Comparator<giangvien>(){
+            @Override
+            public int compare(giangvien o1, giangvien o2) {
+                String a[] = o1.ten.split("\\s+");
+                String b[] = o2.ten.split("\\s+");
+                return a[a.length-1].compareTo(b[b.length-1]);
+            }
+        });
+        for(giangvien x : arr){
+            System.out.println(x);
+        }
+    }
+}
