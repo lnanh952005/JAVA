@@ -1,0 +1,41 @@
+package example;
+import java.util.*;
+class sinhvien{
+    protected String ma,ten,lop;
+    protected double d1,d2,d3;
+
+    public sinhvien(String ma, String ten, String lop, double d1, double d2, double d3) {
+        this.ma = ma;
+        this.ten = ten;
+        this.lop = lop;
+        this.d1 = d1;
+        this.d2 = d2;
+        this.d3 = d3;
+    }
+
+    public String toString(){
+        return ma + " "+ ten +" "+ lop + " "+ String.format("%.1f %.1f %.1f", d1,d2,d3);
+    }
+}
+public class exxxam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); sc.nextLine();
+        ArrayList<sinhvien> arr = new ArrayList<>();
+        for(int i=1;i<=n;i++){
+            arr.add(new sinhvien(sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextDouble(),sc.nextDouble(),sc.nextDouble()));
+            sc.nextLine();
+        }
+        Collections.sort(arr,new Comparator<sinhvien>(){
+            @Override
+            public int compare(sinhvien o1, sinhvien o2) {
+                return o1.ten.compareTo(o2.ten);
+            }
+        });
+        int dem =1;
+        for(sinhvien x : arr){
+            System.out.print(dem++ + " ");
+            System.out.println(x);
+        }
+    }
+}
