@@ -1,0 +1,50 @@
+package example;
+import java.util.*;
+class sinhvien{
+    protected String ma,ten,lop,email;
+
+    public sinhvien(String ma, String ten, String lop, String email) {
+        this.ma = ma;
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+    }
+    
+    public String toString(){
+        return this.ma + " "+ this.ten +" "+ this.lop+" "+this.email;
+    }
+}
+public class exxxam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); sc.nextLine();
+        ArrayList<sinhvien> arr = new ArrayList<>();
+        for(int i=1;i<=n;i++){
+            arr.add(new sinhvien(sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine()));
+            
+        }
+        int q= sc.nextInt();sc.nextLine();
+        while(q-- >0){
+            String s = sc.nextLine();
+            
+            System.out.println("DANH SACH SINH VIEN NGANH "+ s.toUpperCase() +":");
+            for(sinhvien x: arr){
+                if(s.equals("Ke toan") && x.ma.contains("DCKT")){
+                    System.out.println(x);
+                }
+                else if(s.equals("Cong nghe thong tin") && x.ma.contains("DCCN") && x.lop.charAt(0) != 'E'){
+                    System.out.println(x);
+                }
+                else if(s.equals("An toan thong tin") && x.ma.contains("DCAT") && x.lop.charAt(0) != 'E'){
+                    System.out.println(x);
+                }
+                else if(s.equals("Vien thong") && x.ma.contains("DCVT")){
+                    System.out.println(x);
+                }
+                else if(s.equals("Dien tu") && x.ma.contains("DCDT")){
+                    System.out.println(x);
+                }
+            }
+        }
+    }
+}
