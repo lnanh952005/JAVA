@@ -1,0 +1,47 @@
+package example;
+import java.util.*;
+
+class person{
+    protected String ten;
+    protected int day,month,year;
+
+    public person(String ten, String ngaysinh) {
+        this.ten = ten;
+        String a[] = ngaysinh.split("/");
+        this.day = Integer.parseInt(a[0]);
+        this.month = Integer.parseInt(a[1]);
+        this.year = Integer.parseInt(a[2]);
+    }
+    
+    public String toString(){
+        return this.ten;
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();sc.nextLine();
+        ArrayList<person> arr = new ArrayList<>();
+        while(n-->0){
+            arr.add(new person(sc.next(),sc.next()));
+        }
+        Collections.sort(arr,new Comparator<person>(){
+            @Override
+            public int compare(person o1, person o2) {
+                if(o1.year != o2.year){
+                    return o1.year - o2.year;
+                }
+                else{
+                    if(o1.month != o2.month){
+                        return o1.month-o2.month;
+                    }
+                    else{
+                        return o1.day-o2.day;
+                    }
+                }
+            }
+        });
+        System.out.println(arr.get(arr.size()-1));
+        System.out.println(arr.get(0));
+    }
+}
