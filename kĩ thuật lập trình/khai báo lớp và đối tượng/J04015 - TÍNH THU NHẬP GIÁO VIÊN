@@ -1,0 +1,35 @@
+package example;
+import java.util.*;
+class giaovien{
+    protected String ma,ten;
+    protected int luongcoban,bac,phucap;
+    
+    public giaovien(String ma, String ten, int luongcoban) {
+        this.ma = ma;
+        this.ten = ten;
+        this.luongcoban = luongcoban;
+        this.bac = Integer.parseInt(ma.substring(2));
+        if(ma.substring(0,2).equals("HT")){
+            this.phucap = 2000000;
+        }
+        else if(ma.substring(0,2).equals("HP")){
+            this.phucap = 900000;
+        }
+        else{
+            this.phucap = 500000;
+        }
+    }
+    public int thunhap(){
+        return this.phucap + this.bac*this.luongcoban;
+    }
+    public String toString(){
+        return this.ma +" "+this.ten+" "+ this.bac +" "+this.phucap +" "+ this.thunhap();
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        giaovien x = new giaovien(sc.nextLine(),sc.nextLine(),sc.nextInt());
+        System.out.println(x);
+    }
+}
