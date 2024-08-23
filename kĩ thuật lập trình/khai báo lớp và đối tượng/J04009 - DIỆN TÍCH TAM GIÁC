@@ -1,0 +1,37 @@
+package example;
+import java.util.*;
+class point{
+    private double x,y;
+    public point(double x,double y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    public static double distance(point a,point b){
+        double kc = Math.pow(b.x-a.x, 2) + Math.pow(b.y-a.y, 2);
+        return Math.sqrt(kc);
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();sc.nextLine();
+        while(t-->0){
+            point p1 = new point(sc.nextDouble(),sc.nextDouble());
+            point p2 = new point(sc.nextDouble(),sc.nextDouble());
+            point p3 = new point(sc.nextDouble(),sc.nextDouble());
+            
+            double a = point.distance(p1, p2);
+            double b = point.distance(p1, p3);
+            double c = point.distance(p2, p3);
+            
+            if(a+b>c && a+c>b && b+c>a){
+                double S = 1 / 4f * Math.sqrt((a + b + c) * (a + b - c) * (a - b + c) * (-a + b + c));
+                System.out.printf("%.2f\n", S);
+            }
+            else{
+                System.out.println("INVALID");
+            }
+        }
+    }
+}
