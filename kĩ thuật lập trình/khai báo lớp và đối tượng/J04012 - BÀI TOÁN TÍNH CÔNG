@@ -1,0 +1,46 @@
+package example;
+import java.util.*;
+class nhanvien{
+    protected String ma,ten,chucvu;
+    protected int luongcoban,songaycong,phucap;
+    protected double thuong;
+    
+    public nhanvien(String ma, String ten, int luongcoban, int songaycong,String chucvu){
+        this.ma = ma;
+        this.ten = ten;
+        this.chucvu = chucvu;
+        if(this.chucvu.equals("GD")){
+            this.phucap = 250000;
+        }
+        else if(this.chucvu.equals("PGD")){
+            this.phucap = 200000;
+        }
+        else if(this.chucvu.equals("TP")){
+            this.phucap = 180000;
+        }
+        else{
+            this.phucap = 150000;
+        }
+        this.luongcoban = luongcoban;
+        this.songaycong = songaycong;
+        if(this.songaycong >= 25){
+            this.thuong = 0.2*this.luongcoban*this.songaycong;
+        }
+        else if(this.songaycong >= 22){
+            this.thuong = 0.1*this.luongcoban*this.songaycong;
+        }
+        else this.thuong = 0;
+    }
+    
+    public String toString(){
+        return this.ma +" "+ this.ten +" "+ this.luongcoban*this.songaycong +" "+ (int)this.thuong+" "+
+                this.phucap +" "+ (int)(luongcoban*songaycong+phucap+thuong);
+    }
+}
+public class test {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        nhanvien x = new nhanvien("NV01",sc.nextLine(),Integer.parseInt(sc.nextLine()),Integer.parseInt(sc.nextLine()),sc.nextLine());
+        System.out.println(x);
+    }
+}
