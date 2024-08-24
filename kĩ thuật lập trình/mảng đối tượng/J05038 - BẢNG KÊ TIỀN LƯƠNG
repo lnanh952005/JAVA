@@ -1,0 +1,60 @@
+package example;
+import java.util.*;
+class nhanvien{
+    protected String ma,ten,chucvu;
+    protected int luongngay,luongthang,songaycong,thuong,phucap,thuclinh;
+    public static int tongtienluong = 0;
+    public nhanvien(String ma,String ten,int luongngay,int songaycong,String chucvu){
+        this.ma = ma;
+        this.ten = ten;
+        this.luongngay = luongngay;
+        this.songaycong = songaycong;
+        this.chucvu = chucvu;
+        this.luongthang = this.luongngay*this.songaycong;
+        if(this.songaycong >= 25){
+            this.thuong = (int)(this.luongthang*0.2);
+        }
+        else if(this.songaycong >= 22){
+            this.thuong = (int)(this.luongthang*0.1);
+        }
+        else{
+            this.thuong = 0;
+        }
+        if(this.chucvu.equals("GD")){
+            this.phucap = 250000;
+        }
+        else if(this.chucvu.equals("PGD")){
+            this.phucap = 200000;
+        }
+        else if(this.chucvu.equals("TP")){
+            this.phucap = 180000;
+        }
+        else{
+            this.phucap = 150000;
+        }
+        
+        this.thuclinh = (this.songaycong*this.luongngay) + this.thuong + this.phucap;
+        
+        tongtienluong += this.thuclinh;
+    }
+    
+    public String toString(){
+        return this.ma+" "+ this.ten+" "+this.luongthang+" "+this.thuong+" "+this.phucap+" "+this.thuclinh;
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<nhanvien> arr = new ArrayList<>();
+        int n = Integer.parseInt(sc.nextLine());
+        for(int i = 1;i<=n;i++){
+            String ma = "NV" +String.format("%02d",i);
+            arr.add(new nhanvien(ma,sc.nextLine(),sc.nextInt(),sc.nextInt(),sc.next()));
+            sc.nextLine();
+        }
+        for(nhanvien x : arr){
+            System.out.println(x);
+        }
+        System.out.print("Tong chi phi tien luong: "+nhanvien.tongtienluong);
+    }
+}
