@@ -1,0 +1,43 @@
+package example;
+import java.util.*;
+class sinhvien{
+    protected String stt,ma,ten,lop,email,doanhngiep;
+    
+    public sinhvien(int stt,String ma,String ten,String lop,String email,String doanhnghiep){
+        this.stt = stt+"";
+        this.ma = ma;
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+        this.doanhngiep = doanhnghiep;
+    }
+    
+    public String toString(){
+        return this.stt +" "+ this.ma +" "+ this.ten+" "+ this.lop+" "+ this.email + " "+ this.doanhngiep;
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<sinhvien> arr = new ArrayList<>();
+        int n = Integer.parseInt(sc.nextLine());
+        for(int i=1;i<=n;i++){
+            arr.add(new sinhvien(i,sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine()));
+        }
+        Collections.sort(arr,new Comparator<sinhvien>(){
+            @Override
+            public int compare(sinhvien o1, sinhvien o2) {
+                return o1.ten.compareTo(o2.ten);
+            }
+        });
+        int q = Integer.parseInt(sc.nextLine());
+        while(q-->0){
+            String doanhnghiep = sc.nextLine();
+            for(sinhvien x : arr){
+                if(x.doanhngiep.equals(doanhnghiep)){
+                    System.out.println(x);
+                }
+            }
+        }
+    }
+}
