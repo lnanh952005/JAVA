@@ -1,0 +1,44 @@
+package example;
+import java.util.*;
+class mathang{
+    protected String ma,ten,donvitinh;
+    protected long giamua,soluong;
+    protected long phivanchuyen,thanhtien,giaban;
+    
+    public mathang(String ma,String ten,String donvitinh,long giamua,long soluong){
+        this.ma = ma;
+        this.ten = ten;
+        this.donvitinh = donvitinh;
+        this.giamua = giamua;
+        this.soluong = soluong;
+        this.phivanchuyen = Math.round((this.giamua*this.soluong)*0.05);
+        this.thanhtien = Math.round(this.giamua*this.soluong + this.phivanchuyen);
+        this.giaban = (long)Math.ceil((this.thanhtien*1.02f/this.soluong)/100)*100;
+    }
+    
+    public String toString(){
+        return this.ma+" "+this.ten+" "+this.donvitinh+" "+this.phivanchuyen+" "+this.thanhtien+" "+this.giaban;
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<mathang> arr = new ArrayList<>();
+        int n = Integer.parseInt(sc.nextLine());
+        for(int i=1;i<=n;i++){
+            String ma = "MH"+String.format("%02d",i);
+            arr.add(new mathang(ma,sc.nextLine(),sc.nextLine(),sc.nextLong(),sc.nextLong()));
+            sc.nextLine();
+        }
+        Collections.sort(arr,new Comparator<mathang>(){
+            @Override
+            public int compare(mathang o1, mathang o2) {
+                if(o1.giaban > o2.giaban) return -1;
+                return 1;
+            }
+        });
+        for(mathang x : arr){
+            System.out.println(x);
+        }
+    }
+}
