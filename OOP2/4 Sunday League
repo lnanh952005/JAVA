@@ -1,0 +1,168 @@
+
+package OOP;
+import java.util.*;
+
+public class Main {
+    
+    public static void xuly(Team a[],String ten,int hieuso,int diem){
+        for(int i=0;i<a.length;i++){
+            if(a[i].getName().equals(ten)){
+                a[i].setSotran(a[i].getSotran()+1);
+                a[i].setHieuso(a[i].getHieuso()+hieuso);
+                a[i].setDiem(a[i].getDiem()+diem);
+                return;
+            }
+        }
+    }
+    public static List<String> Convert(String s){
+        List<String> arr = new ArrayList<>();
+        String a[] = s.split("\\s+");
+        int idx = 0;
+        for(int i=0;i<a.length;i++){
+            if(a[i].equals("-")){
+                idx = i;
+                break;
+            }
+        }
+        String tend1 = "";
+        String diemd1 = a[idx-1];
+        for(int i=0;i<idx-1;i++){
+            tend1 += a[i] +" ";
+        }
+        tend1 = tend1.trim();
+        
+        String tend2 = "";
+        String diemd2 = a[idx+1];
+        for(int i=idx+2;i<a.length;i++){
+            tend2 += a[i]+" ";
+        }
+        tend2 = tend2.trim();
+        arr.add(tend1);
+        arr.add(diemd1);
+        arr.add(tend2);
+        arr.add(diemd2);
+        return arr;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Team team[] = new Team[20];
+        for(int i=0;i<20;i++){
+            team[i] = new Team(sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextInt(),sc.nextInt(),sc.nextInt());
+            sc.nextLine();
+            sc.nextLine();
+        }
+        for(int i=0;i<10;i++){
+            String s = sc.nextLine().trim();
+            List<String> arr = Convert(s);
+            int diemd1 = Integer.parseInt(arr.get(1));
+            int diemd2 = Integer.parseInt(arr.get(3));
+            if(diemd1 == diemd2){
+                xuly(team,arr.get(0),0,1);
+                xuly(team,arr.get(2),0,1);
+            }
+            else if(diemd1 < diemd2){
+                xuly(team,arr.get(0),diemd1-diemd2,0);
+                xuly(team,arr.get(2),diemd2-diemd1,3);
+            }
+            else{
+                xuly(team,arr.get(0),diemd1-diemd2,3);
+                xuly(team,arr.get(2),diemd2-diemd1,0);
+            }
+        }
+        Arrays.sort(team,new Comparator<>(){
+            @Override
+            public int compare(Team o1, Team o2) {
+                if(o1.getDiem() != o2.getDiem()){
+                    return o2.getDiem() - o1.getDiem();
+                }
+                else{
+                    if(o1.getHieuso() != o2.getHieuso()){
+                        return o2.getHieuso() - o1.getHieuso();
+                    }
+                    else{
+                        return o2.getId().compareTo(o1.getId());
+                    }
+                }
+            }
+        });
+        
+        for(int i=0;i<20;i++){
+            System.out.printf("#%d "+ team[i],i+1);
+        }
+    }
+}
+///////////////////////////////////////////////////////////
+class Team {
+    private String stt;
+    private String id;
+    private String name;
+    private int sotran,hieuso,diem;
+    
+    public Team(){
+        
+    }
+
+    public Team(String stt, String id, String name, int sotran, int hieuso, int diem) {
+        this.stt = stt;
+        this.id = id;
+        this.name = name;
+        this.sotran = sotran;
+        this.hieuso = hieuso;
+        this.diem = diem;
+    }
+
+    public String getStt() {
+        return stt;
+    }
+
+    public void setStt(String stt) {
+        this.stt = stt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSotran() {
+        return sotran;
+    }
+
+    public void setSotran(int sotran) {
+        this.sotran = sotran;
+    }
+
+    public int getHieuso() {
+        return hieuso;
+    }
+
+    public void setHieuso(int hieuso) {
+        this.hieuso = hieuso;
+    }
+
+    public int getDiem() {
+        return diem;
+    }
+
+    public void setDiem(int diem) {
+        this.diem = diem;
+    }
+    
+    public String toString(){
+        return this.id +" "+this.name +" "+this.sotran+" "+this.hieuso+" "+this.diem
+        +"\n------------------\n";
+    }
+}
+
+
